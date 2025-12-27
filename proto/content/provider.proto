@@ -1,0 +1,27 @@
+// Версия ProtoBuf
+syntax = "proto3";
+
+// Текущий пакет - указывает пространство имен для сервиса и сообщений. Помогает избегать конфликтов имен.
+package content;
+
+// Настройки для генерации Go кода.
+option go_package = "tgbot.content.provider.v1;providerv1";
+
+service Provider {
+  rpc Features (FeaturesRequest) returns (FeaturesResponse);
+}
+
+// Объект, который отправляется при вызове RPC-метода (ручки) Features.
+message FeaturesRequest {
+  int64 user_id = 1; //
+}
+
+// Объект, который метод (ручка) вернёт.
+message FeaturesResponse {
+  repeated FeatureItem features = 1; //
+}
+
+message FeatureItem {
+  string name = 1;
+  string text = 2;
+}
